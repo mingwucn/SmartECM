@@ -1,0 +1,49 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 12px #ccc;
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    max-width: 500px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+input {
+    width: 85%;
+    font-size: 1.2rem;
+    padding: 8px 4px;
+    margin: 10px 10px;
+    border-radius: 8px;
+}
+
+label {
+    float: left;
+    margin-left: 30px;
+    font-size: larger;
+    margin-top: 10px;
+}
+
+.results {
+    margin-left: -10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+    float: left;
+    width: fit-content;
+    line-height: 70%;
+}
