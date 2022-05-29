@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/SmartECM/static/css/main.57a6931b.css",
-    "main.js": "/SmartECM/static/js/main.2a356d65.js",
+    "main.css": "/SmartECM/static/css/main.fc9e1ecb.css",
+    "main.js": "/SmartECM/static/js/main.f68c6005.js",
     "static/js/787.7c1cf9bb.chunk.js": "/SmartECM/static/js/787.7c1cf9bb.chunk.js",
     "index.html": "/SmartECM/index.html",
-    "main.57a6931b.css.map": "/SmartECM/static/css/main.57a6931b.css.map",
-    "main.2a356d65.js.map": "/SmartECM/static/js/main.2a356d65.js.map",
+    "main.fc9e1ecb.css.map": "/SmartECM/static/css/main.fc9e1ecb.css.map",
+    "main.f68c6005.js.map": "/SmartECM/static/js/main.f68c6005.js.map",
     "787.7c1cf9bb.chunk.js.map": "/SmartECM/static/js/787.7c1cf9bb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.57a6931b.css",
-    "static/js/main.2a356d65.js"
+    "static/css/main.fc9e1ecb.css",
+    "static/js/main.f68c6005.js"
   ]
 }
