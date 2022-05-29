@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { ReactSketchCanvas } from "react-sketch-canvas";
-import { Button } from 'react-bootstrap';
 import { saveAs } from 'file-saver';
 
 const styles = {
@@ -37,12 +36,12 @@ const Canvas = () => {
         strokeWidth={6}
         strokeColor="red" />
       <div className='mt-3'>
-        <Button
+        <button
           onClick={handleSubmit}
-          variant='primary'>Save</Button>
-        <Button
+          variant='primary'>Save</button>
+        <button
           onClick={handleReset}
-          variant='secondary'>Reset</Button>
+          variant='secondary'>Reset</button>
       </div>
     </React.Fragment>
   )

@@ -1,12 +1,14 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 20px;
-    width: 100%;
+.predictor {
+    position: relative;
+    display: block;
+    min-width: 300px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,26 +17,54 @@
     width: 50%;
     margin-top: 20px;
     padding: 10px;
+    min-width: 300px;
     max-width: 500px;
 }
 
-.btn {
+.container .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    width: 100%;
+    top: 10px;
+}
+
+.container .btn button {
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
     margin: 5px;
+    background-color: aqua;
+    align-items: center;
 }
 
-input {
-    width: 85%;
+/* .container .form .inputs{
+    position: absolute;
+    top:-40px;
+    display:flex;
+    flex-direction: column;
+} */
+.container .form .formInput {
+    position: absolute;
+    right: 4%;
+    height: 28px;
+    width: 20%;
     font-size: 1.2rem;
-    padding: 8px 4px;
-    margin: 10px 10px;
+    padding: 2px 4px;
+    margin: -10px;
     border-radius: 8px;
+    border-color: #e8e8e8;
 }
 
-label {
+.container .form label {
+    position: relative;
     float: left;
-    margin-left: 30px;
+    margin-left: 15px;
     font-size: larger;
-    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-top: -10px;
 }
 
 .results {
