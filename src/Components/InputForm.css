@@ -8,8 +8,10 @@
 }
 
 .container {
-    position: relative;
     display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
