@@ -22,7 +22,7 @@ const Slider = (props) => {
                 <div className="sliderValue" 
                     style={{
                         color: "#e4e4e4",
-                        left: ((props.value - props.minValue) / (props.maxValue - props.minValue)) * 95 - 57 + "%",
+                        left: ((props.value - props.minValue) / (props.maxValue - props.minValue)) * 94 - 57 + "%",
                     }}
                 >
                     <span style={{

@@ -1,8 +1,7 @@
 .predictor {
     position: relative;
     display: block;
-    min-width: 300px;
-    max-width: 500px;
+    width: 375px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -19,8 +18,8 @@
     width: 50%;
     margin-top: 20px;
     padding: 10px;
-    min-width: 300px;
-    max-width: 500px;
+    width: 350px;
+    /* max-width: 375px; */
 }
 
 .container .form {

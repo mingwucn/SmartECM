@@ -12,8 +12,8 @@ function LR(a, b, c, d) {
     const biases = [-0.15470666, 1.0727327, 0.10926036, 0.6458496]
     const results = math.multiply(inputs, weights);
     var sums = results.map((val, i) => val + biases[i])
-    console.log(sums);
-    console.log(sums[0]);
+    // console.log(sums);
+    // console.log(sums[0]);
     return (
         math.abs(sums)
     )

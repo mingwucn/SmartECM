@@ -3,7 +3,7 @@ import './App.css';
 import BarChart from './Components/Chart/BarChart';
 import Canvas from './Components/Draw';
 import InputForm from './Components/InputForm';
-import TFModel from './Components/tf/TFModel';
+// import TFModel from './Components/tf/TFModel';
 
 document.title = "ECM predictor"
 
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <InputForm />
       {/* <Canvas /> */}
-      <TFModel />
+      {/* <TFModel /> */}
     </div>
   );
 }

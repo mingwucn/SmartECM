@@ -4,11 +4,12 @@ import BarChart from './Chart/BarChart';
 import './InputForm.css';
 import LR from './LR';
 import LinePlot from './Chart/LinePlot';
+import TFModels from './tf/TFModel'
 
 function InputForm() {
   const [voltage, setVoltage] = useState(20)
   const [flow, setFlow] = useState(47)
-  const [duty, setDuty] = useState(50)
+  const [duty, setDuty] = useState(30)
   const [pulseOn, setPulseOn] = useState(10)
   const [diameter, setDiameter] = useState("")
   const [depth, setDepth] = useState("")
@@ -44,23 +45,29 @@ function InputForm() {
     window.location.reload()
   }
 
-  useEffect(() => {
-    mlHandler();
-  }, [voltage, duty, flow, pulseOn])
+  // useEffect(() => {
+  //   mlHandler();
+  // }, [voltage, duty, flow, pulseOn])
 
   return (
     <div >
       <div className='predictor'>
+        <TFModels
+          voltage={voltage}
+          duty={duty}
+          flow={flow}
+          pulseOn={pulseOn}
+        />
 
-        <LinePlot
+        {/* <LinePlot
           diameter={diameter}
           depth={depth}
           hillDiameter={hillDiameter}
           hillHeight={hillHeight}
-        />
+        /> */}
       </div>
       <div className='container'>
-        <h1>ECM Predictor</h1>
+        <h1>Processing Parameters</h1>
         <form className='form' onSubmit={calTest}>
           <div>
             <label>Voltage (V)</label>
@@ -73,35 +80,7 @@ function InputForm() {
               value={voltage}
               func={setVoltage}
               maxValue={30}
-              minValue={10}
-            />
-          </div>
-          <div>
-            <label>Duty cycle</label>
-            <input
-              className='formInput'
-              value={duty}
-              onChange={(e) => setDuty(e.target.value)}
-            />
-            <Slider
-              value={duty}
-              func={setDuty}
-              maxValue={75}
-              minValue={10}
-            />
-          </div>
-          <div>
-            <label>Pulse on time (ms)</label>
-            <input
-              className='formInput'
-              value={pulseOn}
-              onChange={(e) => setPulseOn(e.target.value)}
-            />
-            <Slider
-              value={pulseOn}
-              func={setPulseOn}
-              maxValue={20}
-              minValue={5}
+              minValue={15}
             />
           </div>
           <div>
@@ -114,12 +93,41 @@ function InputForm() {
             <Slider
               value={flow}
               func={setFlow}
-              maxValue={85}
-              minValue={13}
+              maxValue={95}
+              minValue={14}
               amplifier={100}
             />
 
           </div>
+          <div>
+            <label>Duty cycle</label>
+            <input
+              className='formInput'
+              value={duty}
+              onChange={(e) => setDuty(e.target.value)}
+            />
+            <Slider
+              value={duty}
+              func={setDuty}
+              maxValue={50}
+              minValue={20}
+            />
+          </div>
+          <div>
+            <label>Pulse on time (ms)</label>
+            <input
+              className='formInput'
+              value={pulseOn}
+              onChange={(e) => setPulseOn(e.target.value)}
+            />
+            <Slider
+              value={pulseOn}
+              func={setPulseOn}
+              maxValue={25}
+              minValue={4}
+            />
+          </div>
+
 
 
           {/* <div>
@@ -133,12 +141,12 @@ function InputForm() {
           </div>
         </div> */}
         </form>
-        <div className='results'>
+        {/* <div className='results'>
           <p>Diameter : {diameter} mm</p>
           <p>Depth : {depth} μm</p>
           <p>Hill diameter : {hillDiameter} mm</p>
           <p>Hill height : {hillHeight} μm</p>
-        </div>
+        </div> */}
       </div>
     </div>
   )
