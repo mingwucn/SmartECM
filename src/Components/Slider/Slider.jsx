@@ -19,7 +19,7 @@ const Slider = (props) => {
             <div className='field'>
                 <div className='left'>{`${props.minValue}>`}</div>
                 <div className='right' >{`<${props.maxValue}`}</div>
-                <div className="sliderValue" dd
+                <div className="sliderValue" 
                     style={{
                         color: "#e4e4e4",
                         left: ((props.value - props.minValue) / (props.maxValue - props.minValue)) * 95 - 57 + "%",

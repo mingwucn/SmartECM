@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <InputForm />
       {/* <Canvas /> */}
-      {/* <TFModel /> */}
+      <TFModel />
     </div>
   );
 }
