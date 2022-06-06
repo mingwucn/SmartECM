@@ -1,0 +1,111 @@
+.container-Signals {
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 12px #ccc;
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    width: 350px;
+    /* max-width: 375px; */
+    overflow: hidden;
+}
+
+.bloc-tabs {
+    position: relative;
+    /* background-color: aqua; */
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+}
+
+.tabs {
+    padding: 0%;
+    padding-top: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    text-align: center;
+    /* background: rgba(128, 128, 128, 0.075); */
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    box-sizing: content-box;
+    box-shadow: 0px 0px 5px #ccc;
+    position: relative;
+    outline: none;
+    border-radius: 8px;
+}
+
+.tabs-active {
+    background: rgb(114, 111, 111);
+    color: aliceblue;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 1px solid transparent;
+    box-shadow: 0px 0px 9px rgb(71, 71, 71);
+}
+
+.tabs {
+    flex-grow: 1;
+}
+
+.tabs-contents {
+    position: relative;
+
+}
+
+.tabs-contents .content-silent {
+    display: none;
+}
+
+
+.container-sliderV {
+    position: relative;
+    /* overflow-y: hidden; */
+    display: flex;
+    width: 100%;
+    margin-left: -72%;
+    height: 180px;
+}
+
+.sliderV {
+    position: absolute;
+    /* margin-top: -40px;
+    margin-left: -4%;
+    margin-right: -4%; */
+    height: 5px;
+    width: 220px;
+    top: -30%
+}
+
+.sliderPlot {
+    position: absolute;
+    pointer-events: none;
+    width: 350px;
+    /* background-color: #0080ff; */
+    top: 40px;
+    left:-75px;
+}
+
+/* .container-sliderV :nth-child(1) {
+    position: absolute;
+    left: (11.6*0)px;
+} */
+/* 
+.container-sliderV :nth-child(2) {
+    position: absolute;
+    left: (11.6*1)px;
+} */
+
+/* .container-sliderV :nth-child(13) {
+    position: absolute;
+    left: (11.6*12)px;
+} */

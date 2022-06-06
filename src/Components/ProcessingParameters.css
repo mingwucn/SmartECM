@@ -1,12 +1,12 @@
-.predictor {
-    position: relative;
+.container-tabs-activate{
     display: block;
-    width: 375px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.container {
+.container-tabs-silent {
+    display: none;
+}
+
+.container-processingParameters {
     display: flex;
     position: relative;
     margin-left: auto;
@@ -22,7 +22,7 @@
     /* max-width: 375px; */
 }
 
-.container .form {
+.container-processingParameters .form {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@
     top: 10px;
 }
 
-.container .btn button {
+.container-processingParameters .btn button {
     flex-direction: row;
     text-align: center;
     justify-content: center;
@@ -41,13 +41,13 @@
     align-items: center;
 }
 
-/* .container .form .inputs{
+/* .container-processingParameters .form .inputs{
     position: absolute;
     top:-40px;
     display:flex;
     flex-direction: column;
 } */
-.container .form .formInput {
+.container-processingParameters .form .formInput {
     position: absolute;
     right: 4%;
     height: 28px;
@@ -59,7 +59,7 @@
     border-color: #e8e8e8;
 }
 
-.container .form label {
+.container-processingParameters .form label {
     position: relative;
     float: left;
     margin-left: 15px;

@@ -1,0 +1,56 @@
+.predictor {
+    position: relative;
+    display: block;
+    width: 375px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.predictor h1 {
+    font-size: 20px;
+} 
+
+.predictor h2 {
+    font-size: 20px;
+}
+
+.predictor .tabs-header {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: -10px;
+
+}
+
+.predictor .header-active {
+    width: fit-content;
+    font-size: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: rgb(212, 212, 212);
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgb(71, 71, 71);
+    color: rgb(77, 77, 77);
+}
+.predictor .header-silent {
+    font-size: 10px;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: rgb(241, 241, 241);
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px rgb(71, 71, 71);
+    color: rgb(139, 139, 139);
+}
+.predictor .header-silent h1{
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.predictor .LinePlot {
+    width: 100%;
+    height: 300px;
+    /* background-color: aqua; */
+
+}
