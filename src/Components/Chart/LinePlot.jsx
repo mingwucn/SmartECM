@@ -38,6 +38,14 @@ export default function LinePlot() {
         CNSdepth,
         CNShillDiameter,
         CNShillHeight,
+        stateLRP,
+        stateLRS,
+        stateLRC,
+        stateNNP,
+        stateNNS,
+        stateNNC,
+        stateCNS,
+        stateCNC,
     } = useContext(ResContext);
     const data = {
         // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
@@ -55,7 +63,7 @@ export default function LinePlot() {
                     { x: `${LRPdiameter}` * 0.6, y: 0 },
                 ],
                 // fill: true,
-                hidden: true,
+                hidden: !stateLRP,
                 // backgroundColor: ,
                 borderColor: "#6fb7ff",
                 showLine: true,
@@ -77,7 +85,7 @@ export default function LinePlot() {
                 borderColor: "#ff8282",
                 showLine: true,
                 tension: 0.3,
-                hidden: true,
+                hidden: !stateLRS,
             },
 
             {
@@ -96,7 +104,7 @@ export default function LinePlot() {
                 borderColor: "#9b37ff",
                 showLine: true,
                 tension: 0.3,
-                hidden: true,
+                hidden: !stateLRC,
             },
 
             {
@@ -115,7 +123,7 @@ export default function LinePlot() {
                 borderColor: "#0ec76a",
                 showLine: true,
                 tension: 0.3,
-                hidden: true,
+                hidden: !stateNNP,
             },
             {
                 label: "ANN (S)",
@@ -133,7 +141,7 @@ export default function LinePlot() {
                 borderColor: "#ff4646",
                 showLine: true,
                 tension: 0.3,
-                hidden: true,
+                hidden: !stateNNS,
             },
             {
                 label: "ANN (P+S)",
@@ -151,6 +159,7 @@ export default function LinePlot() {
                 borderColor: "#440088",
                 showLine: true,
                 tension: 0.3,
+                hidden: !stateNNC,
             },
             {
                 label: "CNN (S)",
@@ -168,7 +177,7 @@ export default function LinePlot() {
                 borderColor: "#d900d9",
                 showLine: true,
                 tension: 0.3,
-                hidden: true,
+                hidden: !stateCNS,
             },
             {
                 label: "CNN (P+S)",
@@ -186,6 +195,7 @@ export default function LinePlot() {
                 borderColor: "#0f0fff",
                 showLine: true,
                 tension: 0.3,
+                hidden: !stateCNC,
             },
             // {
             //     label: "Second dataset",

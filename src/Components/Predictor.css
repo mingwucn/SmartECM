@@ -4,11 +4,12 @@
     width: 375px;
     margin-left: auto;
     margin-right: auto;
+    align-items: center;
 }
 
 .predictor h1 {
     font-size: 20px;
-} 
+}
 
 .predictor h2 {
     font-size: 20px;
@@ -33,6 +34,7 @@
     box-shadow: 0px 0px 5px rgb(71, 71, 71);
     color: rgb(77, 77, 77);
 }
+
 .predictor .header-silent {
     font-size: 10px;
     width: fit-content;
@@ -43,7 +45,8 @@
     box-shadow: 0px 0px 2px rgb(71, 71, 71);
     color: rgb(139, 139, 139);
 }
-.predictor .header-silent h1{
+
+.predictor .header-silent h1 {
     margin-top: 5px;
     font-size: 15px;
 }
@@ -51,6 +54,93 @@
 .predictor .LinePlot {
     width: 100%;
     height: 300px;
+    pointer-events: none;
     /* background-color: aqua; */
 
+}
+
+.grid-container1 {
+    position: absolute;
+    margin-right: auto;
+    margin-left: 9%;
+    top: 15px;
+    width: 82%;
+    align-items: center;
+    opacity: 0;
+    display: flex;
+    gap: 30px;
+    height: 5px;
+}
+
+.grid-container1>div {
+    /* background-color: rgba(117, 117, 117, 0.8); */
+    text-align: center;
+    font-size: 12px;
+    width: 80px;
+}
+.grid-container1 .item2{
+    margin-left: -10px;
+}
+.grid-container1 .item3{
+    margin-left: -10px;
+    width: 100px;
+}
+
+
+.grid-container2 {
+    position: absolute;
+    margin-right: auto;
+    margin-left: 12%;
+    top: 35px;
+    width: 82%;
+    align-items: center;
+    opacity: 0;
+    display: flex;
+    gap: 30px;
+    height: 5px;
+}
+
+.grid-container2>div {
+    /* background-color: rgba(117, 117, 117, 0.8); */
+    text-align: center;
+    font-size: 12px;
+    width: 80px;
+}
+.grid-container2 .item4{
+    margin-left: -10px;
+}
+.grid-container2 .item5{
+    margin-left: -10px;
+    width: 90px;
+}
+.grid-container2 .item6{
+    margin-left: -20px;
+    width: 100px;
+}
+
+
+.grid-container3 {
+    position: absolute;
+    margin-right: auto;
+    left: 80px;
+    top: 56px;
+    width: 82%;
+    align-items: center;
+    opacity: 0;
+    display: flex;
+    gap: 30px;
+    height: 5px;
+}
+
+.grid-container3>div {
+    font-size: 12px;
+    width: 80px;
+    /* background-color: brown; */
+}
+.grid-container3 .item7{
+    width: 90px;
+}
+.grid-container3 .item8{
+    margin-left: -18px;
+    width: 110px;
 }

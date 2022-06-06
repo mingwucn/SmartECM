@@ -12,6 +12,16 @@ export const ResContext = createContext(null);
 
 const ECMPredictor = () => {
     const [toggleState, setToggleState] = useState(1)
+    const [stateLRP, setStateLRP] = useState(0)
+    const [stateLRS, setStateLRS] = useState(0)
+    const [stateLRC, setStateLRC] = useState(0)
+
+    const [stateNNP, setStateNNP] = useState(0)
+    const [stateNNS, setStateNNS] = useState(0)
+    const [stateNNC, setStateNNC] = useState(1)
+
+    const [stateCNS, setStateCNS] = useState(0)
+    const [stateCNC, setStateCNC] = useState(1)
 
     const [voltage, setVoltage] = useState(25)
     const [flow, setFlow] = useState(47)
@@ -210,6 +220,14 @@ const ECMPredictor = () => {
             EC11, setEC11,
             EC12, setEC12,
             EC13, setEC13,
+            stateLRP, setStateLRP,
+            stateLRS, setStateLRS,
+            stateLRC, setStateLRC,
+            stateNNP, setStateNNP,
+            stateNNS, setStateNNS,
+            stateNNC, setStateNNC,
+            stateCNS, setStateCNS,
+            stateCNC, setStateCNC,
         }}>
 
             <ResContext.Provider value={{
@@ -245,6 +263,14 @@ const ECMPredictor = () => {
                 CNSdepth, setCNSDepth,
                 CNShillDiameter, setCNSHillDiameter,
                 CNShillHeight, setCNSHillHeight,
+                stateLRP, setStateLRP,
+                stateLRS, setStateLRS,
+                stateLRC, setStateLRC,
+                stateNNP, setStateNNP,
+                stateNNS, setStateNNS,
+                stateNNC, setStateNNC,
+                stateCNS, setStateCNS,
+                stateCNC, setStateCNC,
 
             }}>
 
@@ -252,6 +278,20 @@ const ECMPredictor = () => {
                 <div className='predictor'>
                     <div className='LinePlot'>
                         <LinePlot />
+                    </div>
+                    <div className='grid-container1'>
+                        <div class="item1" onClick={() => setStateLRP(!stateLRP)}>1</div>
+                        <div class="item2" onClick={() => setStateLRS(!stateLRS)}>2</div>
+                        <div class="item3" onClick={() => setStateLRC(!stateLRC)}>3</div>
+                    </div>
+                    <div className='grid-container2'>
+                        <div class="item4" onClick={() => setStateNNP(!stateNNP)}>4</div>
+                        <div class="item5" onClick={() => setStateNNS(!stateNNS)}>5</div>
+                        <div class="item6" onClick={() => setStateNNC(!stateNNC)}>6</div>
+                    </div>
+                    <div className='grid-container3'>
+                        <div class="item7" onClick={() => setStateCNS(!stateCNS)}>7</div>
+                        <div class="item8" onClick={() => setStateCNC(!stateCNC)}>8</div>
                     </div>
                     <div className="tabs-header">
                         <div className={toggleState === 1 ? 'header-active' : 'header-silent'}
