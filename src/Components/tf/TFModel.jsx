@@ -127,7 +127,7 @@ const TFModel = () => {
   const [CNSmodel, setCNSModel] = useState("")
   const [CNCmodel, setCNCModel] = useState("")
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const models = {
       LRS: "https://mingwucn.github.io/MLJson/SmartECM/linear_regression_2_signal/model.json",
       LRP: "https://mingwucn.github.io/MLJson/SmartECM/linear_regression_2_parameters/model.json",
@@ -137,6 +137,16 @@ const TFModel = () => {
       NNC: "https://mingwucn.github.io/MLJson/SmartECM/NN_2_combine/model.json",
       CNS: "https://mingwucn.github.io/MLJson/SmartECM/CNN_2_signal/model.json",
       CNC: "https://mingwucn.github.io/MLJson/SmartECM/CNN_2_combine/model.json",
+
+      // LRS: "https://mingwucn.gitee.io/mljson/SmartECM/linear_regression_2_signal/model.json",
+      // LRP: "https://mingwucn.gitee.io/mljson/SmartECM/linear_regression_2_parameters/model.json",
+      // LRC: "https://mingwucn.gitee.io/mljson/SmartECM/linear_regression_2_combine/model.json",
+      // NNS: "https://mingwucn.gitee.io/mljson/SmartECM/NN_2_signal/model.json",
+      // NNP: "https://mingwucn.gitee.io/mljson/SmartECM/NN_2_parameters/model.json",
+      // NNC: "https://mingwucn.gitee.io/mljson/SmartECM/NN_2_combine/model.json",
+      // CNS: "https://mingwucn.gitee.io/mljson/SmartECM/CNN_2_signal/model.json",
+      // CNC: "https://mingwucn.gitee.io/mljson/SmartECM/CNN_2_combine/model.json",
+
     };
 
 
