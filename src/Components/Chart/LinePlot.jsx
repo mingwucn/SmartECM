@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale } from 'chart.js';
-import { Bar, Line, Scatter } from 'react-chartjs-2';
+import { Scatter } from 'react-chartjs-2';
 import { ResContext } from '../Predictor';
 
 Chart.register(...registerables);
@@ -202,11 +201,12 @@ export default function LinePlot() {
             colorschemes: {
                 scheme: 'tableau.Tableau20'
             },
+            tooltip: false
         },
         maintainAspectRatio: false
     }
-    
-    
+
+
     return (
         <div className="LinePlot">
             <Scatter

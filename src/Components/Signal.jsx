@@ -79,117 +79,29 @@ const Signal = () => {
         EC13, setEC13,
     } = useContext(DataContext);
 
-    const averageCalculatorT1 = () => {
-        setT1A(
-            tf.mean([
-                [
-                    parseFloat(T11),
-                    parseFloat(T12),
-                    parseFloat(T13),
-                    parseFloat(T14),
-                    parseFloat(T15),
-                    parseFloat(T16),
-                    parseFloat(T17),
-                    parseFloat(T18),
-                    parseFloat(T19),
-                    parseFloat(T110),
-                    parseFloat(T111),
-                    parseFloat(T112),
-                    parseFloat(T113),
-                ]
-            ]).dataSync()[0]
-        );
-    }
-
-    const averageCalculatorT2 = () => {
-        setT2A(
-            tf.mean([
-                [
-                    parseFloat(T21),
-                    parseFloat(T22),
-                    parseFloat(T23),
-                    parseFloat(T24),
-                    parseFloat(T25),
-                    parseFloat(T26),
-                    parseFloat(T27),
-                    parseFloat(T28),
-                    parseFloat(T29),
-                    parseFloat(T210),
-                    parseFloat(T211),
-                    parseFloat(T212),
-                    parseFloat(T213),
-                ]
-            ]).dataSync()[0]
-        );
-    }
-
-    const averageCalculatorT3 = () => {
-        setT3A(
-            tf.mean([
-                [
-                    parseFloat(T31),
-                    parseFloat(T32),
-                    parseFloat(T33),
-                    parseFloat(T34),
-                    parseFloat(T35),
-                    parseFloat(T36),
-                    parseFloat(T37),
-                    parseFloat(T38),
-                    parseFloat(T39),
-                    parseFloat(T310),
-                    parseFloat(T311),
-                    parseFloat(T312),
-                    parseFloat(T313),
-                ]
-            ]).dataSync()[0]
-        );
-    }
-
-    const averageCalculatorT4 = () => {
-        setT4A(
-            tf.mean([
-                [
-                    parseFloat(T41),
-                    parseFloat(T42),
-                    parseFloat(T43),
-                    parseFloat(T44),
-                    parseFloat(T45),
-                    parseFloat(T46),
-                    parseFloat(T47),
-                    parseFloat(T48),
-                    parseFloat(T49),
-                    parseFloat(T410),
-                    parseFloat(T411),
-                    parseFloat(T412),
-                    parseFloat(T413),
-                ]
-            ]).dataSync()[0]
-        );
-    }
-
-    const averageCalculatorEC = () => {
-        setECA(
-            tf.mean([
-                [
-                    parseFloat(EC1),
-                    parseFloat(EC2),
-                    parseFloat(EC3),
-                    parseFloat(EC4),
-                    parseFloat(EC5),
-                    parseFloat(EC6),
-                    parseFloat(EC7),
-                    parseFloat(EC8),
-                    parseFloat(EC9),
-                    parseFloat(EC10),
-                    parseFloat(EC11),
-                    parseFloat(EC12),
-                    parseFloat(EC13),
-                ]
-            ]).dataSync()[0]
-        );
-    }
 
     useEffect(() => {
+        const averageCalculatorT1 = () => {
+            setT1A(
+                tf.mean([
+                    [
+                        parseFloat(T11),
+                        parseFloat(T12),
+                        parseFloat(T13),
+                        parseFloat(T14),
+                        parseFloat(T15),
+                        parseFloat(T16),
+                        parseFloat(T17),
+                        parseFloat(T18),
+                        parseFloat(T19),
+                        parseFloat(T110),
+                        parseFloat(T111),
+                        parseFloat(T112),
+                        parseFloat(T113),
+                    ]
+                ]).dataSync()[0]
+            );
+        }
         averageCalculatorT1();
     }, [
         T11,
@@ -209,6 +121,29 @@ const Signal = () => {
     )
 
     useEffect(() => {
+        const averageCalculatorT2 = () => {
+            setT2A(
+                tf.mean([
+                    [
+                        parseFloat(T21),
+                        parseFloat(T22),
+                        parseFloat(T23),
+                        parseFloat(T24),
+                        parseFloat(T25),
+                        parseFloat(T26),
+                        parseFloat(T27),
+                        parseFloat(T28),
+                        parseFloat(T29),
+                        parseFloat(T210),
+                        parseFloat(T211),
+                        parseFloat(T212),
+                        parseFloat(T213),
+                    ]
+                ]).dataSync()[0]
+            );
+        }
+
+
         averageCalculatorT2();
     }, [
         T21,
@@ -228,6 +163,27 @@ const Signal = () => {
     )
 
     useEffect(() => {
+        const averageCalculatorT3 = () => {
+            setT3A(
+                tf.mean([
+                    [
+                        parseFloat(T31),
+                        parseFloat(T32),
+                        parseFloat(T33),
+                        parseFloat(T34),
+                        parseFloat(T35),
+                        parseFloat(T36),
+                        parseFloat(T37),
+                        parseFloat(T38),
+                        parseFloat(T39),
+                        parseFloat(T310),
+                        parseFloat(T311),
+                        parseFloat(T312),
+                        parseFloat(T313),
+                    ]
+                ]).dataSync()[0]
+            );
+        }
         averageCalculatorT3();
     }, [
         T31,
@@ -247,6 +203,29 @@ const Signal = () => {
     )
 
     useEffect(() => {
+        const averageCalculatorT4 = () => {
+            setT4A(
+                tf.mean([
+                    [
+                        parseFloat(T41),
+                        parseFloat(T42),
+                        parseFloat(T43),
+                        parseFloat(T44),
+                        parseFloat(T45),
+                        parseFloat(T46),
+                        parseFloat(T47),
+                        parseFloat(T48),
+                        parseFloat(T49),
+                        parseFloat(T410),
+                        parseFloat(T411),
+                        parseFloat(T412),
+                        parseFloat(T413),
+                    ]
+                ]).dataSync()[0]
+            );
+        }
+
+
         averageCalculatorT4();
     }, [
         T41,
@@ -266,6 +245,27 @@ const Signal = () => {
     )
 
     useEffect(() => {
+        const averageCalculatorEC = () => {
+            setECA(
+                tf.mean([
+                    [
+                        parseFloat(EC1),
+                        parseFloat(EC2),
+                        parseFloat(EC3),
+                        parseFloat(EC4),
+                        parseFloat(EC5),
+                        parseFloat(EC6),
+                        parseFloat(EC7),
+                        parseFloat(EC8),
+                        parseFloat(EC9),
+                        parseFloat(EC10),
+                        parseFloat(EC11),
+                        parseFloat(EC12),
+                        parseFloat(EC13),
+                    ]
+                ]).dataSync()[0]
+            );
+        }
         averageCalculatorEC();
     }, [
         EC1,
@@ -284,7 +284,7 @@ const Signal = () => {
     ]
     )
 
-    const [toggleState, setToggleState] = useState(1);
+    const [toggleState, setToggleState] = useState(5);
     const toggleTab = (tabNum) => {
         setToggleState(tabNum);
     }
@@ -326,7 +326,7 @@ const Signal = () => {
 
             <div className='tabs-contents'>
                 <div className={toggleState === 1 ? 'content-active' : "content-silent"}>
-                    <h2>Temperature sensor #1</h2>
+                    <h2>Temperature sensor #1 (℃)</h2>
                     <div className='container-sliderV'>
                         <div className='sliderV' style={{ left: `${spaceGap * 0}` + "px" }}>
                             <SliderV
@@ -459,7 +459,7 @@ const Signal = () => {
                 </div>
 
                 <div className={toggleState === 2 ? 'content-active' : "content-silent"}>
-                    <h2>Temperature sensor #2</h2>
+                    <h2>Temperature sensor #2 (℃)</h2>
                     <div className='container-sliderV'>
                         <div className='sliderV' style={{ left: `${spaceGap * 0}` + "px" }}>
                             <SliderV
@@ -592,7 +592,7 @@ const Signal = () => {
                 </div>
 
                 <div className={toggleState === 3 ? 'content-active' : "content-silent"}>
-                    <h2>Temperature sensor #3</h2>
+                    <h2>Temperature sensor #3 (℃)</h2>
                     <div className='container-sliderV'>
                         <div className='sliderV' style={{ left: `${spaceGap * 0}` + "px" }}>
                             <SliderV
@@ -725,7 +725,7 @@ const Signal = () => {
                 </div>
 
                 <div className={toggleState === 4 ? 'content-active' : "content-silent"}>
-                    <h2>Temperature sensor #4</h2>
+                    <h2>Temperature sensor #4 (℃)</h2>
                     <div className='container-sliderV'>
                         <div className='sliderV' style={{ left: `${spaceGap * 0}` + "px" }}>
                             <SliderV
@@ -858,7 +858,7 @@ const Signal = () => {
                 </div>
 
                 <div className={toggleState === 5 ? 'content-active' : "content-silent"}>
-                    <h2>Electric current sensor</h2>
+                    <h2>Electric current sensor (A)</h2>
                     <div className='container-sliderV'>
                         <div className='sliderV' style={{ left: `${spaceGap * 0}` + "px" }}>
                             <SliderV
