@@ -1,8 +1,8 @@
 .sliderVContainer {
     position: absolute;
     display: block;
-    height: 30px;
-    width: 80%;
+    height: 50px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -11,33 +11,6 @@
     top: 125px;
     left: 0px;
     transform: rotate(270deg);
-}
-
-.sliderVContainer .sliderValue {
-    pointer-events: none;
-    display: block;
-    margin-bottom: -10px;
-    position: absolute;
-    background-color: #f50909;
-    width: 100%;
-    z-index: 5;
-    transform: rotate(90deg);
-}
-
-.sliderVContainer .sliderValue span {
-    pointer-events: none;
-    position: absolute;
-    height: 55px;
-    width: 55px;
-    font-weight: 600;
-    font-size: 18px;
-    top: -80px;
-    left:65px;
-    transform: translate(-50%);
-    transform-origin: bottom;
-    transition: transform 0.3s ease-in-out;
-    line-height: 50px;
-    z-index: 2;
 }
 
 .sliderVContainer .field {

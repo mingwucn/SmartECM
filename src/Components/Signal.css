@@ -64,6 +64,11 @@
 
 }
 
+.tabs-contents h2{
+
+    margin-top: 0px;
+}
+
 /* .tabs-contents .content-active {
     background-color: aliceblue;
 } */
@@ -77,8 +82,8 @@
     /* overflow-y: hidden; */
     display: flex;
     width: 200px;
-    margin-left:-73px;
-    height: 180px;
+    margin-left:-30px;
+    height: 190px;
     /* background-color: aliceblue; */
 }
 
@@ -88,8 +93,8 @@
     margin-left: -4%;
     margin-right: -4%; */
     height: 5px;
-    width: 220px;
-    top: -30%
+    width: 152px;
+    top: -50%
 }
 
 .sliderPlot {

@@ -1,7 +1,14 @@
 .App {
+  position: fixed;
+  margin-top: auto;
   margin-right: auto;
   margin-right: auto;
   text-align: center;
+  /* background-color: #61dafb; */
+  left: 50%;
+  margin-top: 3%;
+  margin-left: -187.5px;
+  /* transform: translate(-50%, -50%); */
 }
 
 .App-logo {
@@ -34,6 +41,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

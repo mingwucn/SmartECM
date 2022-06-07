@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useCallback, useTransition } from 'react'
 import LinePlot from './Chart/LinePlot';
 import ProcessingParameters from './ProcessingParameters'
 import TFModels from './tf/TFModel';
@@ -11,6 +11,7 @@ export const ResContext = createContext(null);
 
 
 const ECMPredictor = () => {
+    const [isPending, startTransition] = useTransition();
     const [toggleState, setToggleState] = useState(1)
     const [stateLRP, setStateLRP] = useState(0)
     const [stateLRS, setStateLRS] = useState(0)
@@ -140,9 +141,11 @@ const ECMPredictor = () => {
     const [CNChillDiameter, setCNCHillDiameter] = useState("")
     const [CNChillHeight, setCNCHillHeight] = useState("")
 
-    const toggleTab = (tabNum) => {
-        setToggleState(tabNum);
-    }
+
+    const toggleTab = useCallback(
+        (tabNum) => {
+            setToggleState(tabNum);
+        }, [toggleState])
 
     return (
         <DataContext.Provider value={{
@@ -280,18 +283,18 @@ const ECMPredictor = () => {
                         <LinePlot />
                     </div>
                     <div className='grid-container1'>
-                        <div class="item1" onClick={() => setStateLRP(!stateLRP)}>1</div>
-                        <div class="item2" onClick={() => setStateLRS(!stateLRS)}>2</div>
-                        <div class="item3" onClick={() => setStateLRC(!stateLRC)}>3</div>
+                        <div class="item1" onClick={() => startTransition(() => setStateLRP(!stateLRP))}>1</div>
+                        <div class="item2" onClick={() => startTransition(() => setStateLRS(!stateLRS))}>2</div>
+                        <div class="item3" onClick={() => startTransition(() => setStateLRC(!stateLRC))}>3</div>
                     </div>
                     <div className='grid-container2'>
-                        <div class="item4" onClick={() => setStateNNP(!stateNNP)}>4</div>
-                        <div class="item5" onClick={() => setStateNNS(!stateNNS)}>5</div>
-                        <div class="item6" onClick={() => setStateNNC(!stateNNC)}>6</div>
+                        <div class="item4" onClick={() => startTransition(() => setStateNNP(!stateNNP))}>4</div>
+                        <div class="item5" onClick={() => startTransition(() => setStateNNS(!stateNNS))}>5</div>
+                        <div class="item6" onClick={() => startTransition(() => setStateNNC(!stateNNC))}>6</div>
                     </div>
                     <div className='grid-container3'>
-                        <div class="item7" onClick={() => setStateCNS(!stateCNS)}>7</div>
-                        <div class="item8" onClick={() => setStateCNC(!stateCNC)}>8</div>
+                        <div class="item7" onClick={() => startTransition(() => setStateCNS(!stateCNS))}>7</div>
+                        <div class="item8" onClick={() => startTransition(() => setStateCNC(!stateCNC))}>8</div>
                     </div>
                     <div className="tabs-header">
                         <div className={toggleState === 1 ? 'header-active' : 'header-silent'}
@@ -305,12 +308,17 @@ const ECMPredictor = () => {
                                 In-process Signals</h1>
                         </div>
                     </div>
-                    <div className={toggleState === 1 ? 'container-tabs-activate' : 'container-tabs-silent'}>
-                        <ProcessingParameters />
-                    </div>
-                    <div className={toggleState === 2 ? 'container-tabs-activate' : 'container-tabs-silent'}>
-                        <Signal />
-                    </div>
+                    {toggleState === 1 ?
+                        <div>
+                            <ProcessingParameters />
+                        </div>
+                        : null}
+
+                    {toggleState === 2 ?
+                        <div>
+                            <Signal />
+                        </div>
+                        : null}
                 </div>
             </ResContext.Provider >
         </DataContext.Provider >

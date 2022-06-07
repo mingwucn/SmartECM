@@ -2,18 +2,16 @@
     position: relative;
     display: block;
     width: 375px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     align-items: center;
+    /* background-color: antiquewhite; */
 }
 
-.predictor h1 {
-    font-size: 20px;
-}
 
-.predictor h2 {
+
+/* .predictor h2 {
     font-size: 20px;
-}
+} */
 
 .predictor .tabs-header {
     display: flex;
@@ -21,22 +19,25 @@
     justify-content: space-around;
     margin-top: 10px;
     margin-bottom: -10px;
+    padding: 0%;
+    height: 30px;
 
 }
 
 .predictor .header-active {
-    width: fit-content;
     font-size: 10px;
+    width: fit-content;
     padding-left: 15px;
     padding-right: 15px;
     background: rgb(212, 212, 212);
     border-radius: 8px;
     box-shadow: 0px 0px 5px rgb(71, 71, 71);
     color: rgb(77, 77, 77);
+    vertical-align: middle;
 }
 
 .predictor .header-silent {
-    font-size: 10px;
+    font-size: 6px;
     width: fit-content;
     padding-left: 5px;
     padding-right: 5px;
@@ -46,9 +47,11 @@
     color: rgb(139, 139, 139);
 }
 
+.predictor .header-active h1 {
+    margin:auto
+}
 .predictor .header-silent h1 {
-    margin-top: 5px;
-    font-size: 15px;
+    margin-top: 6px;
 }
 
 .predictor .LinePlot {
@@ -78,10 +81,12 @@
     font-size: 12px;
     width: 80px;
 }
-.grid-container1 .item2{
+
+.grid-container1 .item2 {
     margin-left: -10px;
 }
-.grid-container1 .item3{
+
+.grid-container1 .item3 {
     margin-left: -10px;
     width: 100px;
 }
@@ -106,14 +111,17 @@
     font-size: 12px;
     width: 80px;
 }
-.grid-container2 .item4{
+
+.grid-container2 .item4 {
     margin-left: -10px;
 }
-.grid-container2 .item5{
+
+.grid-container2 .item5 {
     margin-left: -10px;
     width: 90px;
 }
-.grid-container2 .item6{
+
+.grid-container2 .item6 {
     margin-left: -20px;
     width: 100px;
 }
@@ -137,10 +145,12 @@
     width: 80px;
     /* background-color: brown; */
 }
-.grid-container3 .item7{
+
+.grid-container3 .item7 {
     width: 90px;
 }
-.grid-container3 .item8{
+
+.grid-container3 .item8 {
     margin-left: -18px;
     width: 110px;
 }

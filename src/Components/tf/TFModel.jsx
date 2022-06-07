@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect, useContext, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useContext, useMemo, useTransition } from 'react';
 import * as tf from '@tensorflow/tfjs';
-import LinePlot from '../Chart/LinePlot';
 import { DataContext, ResContext } from '../Predictor';
 
 const TFModel = () => {
@@ -117,6 +116,7 @@ const TFModel = () => {
   } = useContext(ResContext);
 
   const [modelStatus, setModelStatus] = useState("0")
+  const [isPending, startTransition] = useTransition();
 
   const [LRSmodel, setLRSModel] = useState("")
   const [LRPmodel, setLRPModel] = useState("")
@@ -127,8 +127,8 @@ const TFModel = () => {
   const [CNSmodel, setCNSModel] = useState("")
   const [CNCmodel, setCNCModel] = useState("")
 
-  useEffect(() => {
-    const models = {
+  const models = useMemo(() => {
+    return {
       LRS: "https://mingwucn.github.io/MLJson/SmartECM/linear_regression_2_signal/model.json",
       LRP: "https://mingwucn.github.io/MLJson/SmartECM/linear_regression_2_parameters/model.json",
       LRC: "https://mingwucn.github.io/MLJson/SmartECM/linear_regression_2_combine/model.json",
@@ -147,40 +147,45 @@ const TFModel = () => {
       // CNS: "https://mingwucn.gitee.io/mljson/SmartECM/CNN_2_signal/model.json",
       // CNC: "https://mingwucn.gitee.io/mljson/SmartECM/CNN_2_combine/model.json",
 
-    };
-
-
-    const mlModelLoader = (models) => {
-      setLRSModel(loadModel(models.LRS))
-      setLRPModel(loadModel(models.LRP))
-      setLRCModel(loadModel(models.LRC))
-      setNNSModel(loadModel(models.NNS))
-      setNNPModel(loadModel(models.NNP))
-      setNNCModel(loadModel(models.NNC))
-      setCNSModel(loadModel(models.CNS))
-      setCNCModel(loadModel(models.CNC))
-    };
-
-    async function loadJson(jsonString) {
-      fetch(jsonString)
-        .then((response) => response.json())
-        .then((messages) => { console.log(messages); });
     }
+  }, []);
 
-    async function loadModel(url) {
-      console.log('Loading pretrained model from ' + url);
-      try {
-        const model = await tf.loadLayersModel(url);
-        console.log('Done loading pretrained model.');
-        return model;
-      } catch (err) {
-        console.error(err);
-        console.log('Loading pretrained model failed.');
+  useLayoutEffect(() => {
+    startTransition(() => {
+      const mlModelLoader = (models) => {
+        setLRSModel(loadModel(models.LRS))
+        setLRPModel(loadModel(models.LRP))
+        setLRCModel(loadModel(models.LRC))
+        setNNSModel(loadModel(models.NNS))
+        setNNPModel(loadModel(models.NNP))
+        setNNCModel(loadModel(models.NNC))
+        setCNSModel(loadModel(models.CNS))
+        setCNCModel(loadModel(models.CNC))
+      };
+
+      const loadModel =
+        async (url) => {
+          console.log('Loading pretrained model from ' + url);
+          try {
+            const model = await tf.loadLayersModel(url);
+            console.log('Done loading pretrained model.');
+            return model;
+          } catch (err) {
+            console.error(err);
+            console.log('Loading pretrained model failed.');
+          }
+        }
+
+      async function loadJson(jsonString) {
+        fetch(jsonString)
+          .then((response) => response.json())
+          .then((messages) => { console.log(messages); });
       }
-    }
-    tf.ready().then(() => {
-      mlModelLoader(models);
-    });
+
+      tf.ready().then(() => {
+        mlModelLoader(models);
+      });
+    })
   }, []);
 
   // useEffect(() => {
@@ -211,191 +216,194 @@ const TFModel = () => {
 
 
   useEffect(() => {
-    const inputParameters = tf.tensor([[parseFloat(voltage), parseFloat(flow / 100), parseFloat(duty), parseFloat(pulseOn)]])
+    startTransition(() => {
+      const inputParameters = tf.tensor([[parseFloat(voltage), parseFloat(flow / 100), parseFloat(duty), parseFloat(pulseOn)]])
 
-    if (modelStatus < 5) {
-      setModelStatus(parseFloat(modelStatus) + 1);
-    };
+      if (modelStatus < 5) {
+        setModelStatus(parseFloat(modelStatus) + 1);
+      };
 
-    tf.ready().then(() => {
-      if (stateLRP == 1) {
-        LRPmodel
-          .then(function (res) {
-            const prediction = res.predict(inputParameters);
-            setLRPDiameter(prediction.arraySync()[0][0])
-            setLRPDepth(prediction.arraySync()[0][1])
-            setLRPHillDiameter(prediction.arraySync()[0][2])
-            setLRPHillHeight(prediction.arraySync()[0][3])
-            // for (let i = 0; i < res.getWeights().length; i++) {
-            //   console.log(res.getWeights()[i].dataSync());
-            // }
-          });
+      tf.ready().then(() => {
+        if (stateLRP == 1) {
+          LRPmodel
+            .then((res) => {
+              const prediction = res.predict(inputParameters);
+              setLRPDiameter(prediction.arraySync()[0][0])
+              setLRPDepth(prediction.arraySync()[0][1])
+              setLRPHillDiameter(prediction.arraySync()[0][2])
+              setLRPHillHeight(prediction.arraySync()[0][3])
+              // for (let i = 0; i < res.getWeights().length; i++) {
+              //   console.log(res.getWeights()[i].dataSync());
+              // }
+            });
+        }
+
+        if (stateNNP == 1) {
+          NNPmodel
+            .then((res) => {
+              const prediction = res.predict(inputParameters);
+              setNNPDiameter(prediction.arraySync()[0][0])
+              setNNPDepth(prediction.arraySync()[0][1])
+              setNNPHillDiameter(prediction.arraySync()[0][2])
+              setNNPHillHeight(prediction.arraySync()[0][3])
+            }
+            )
+        }
+      })
+    })
+  }, [voltage, flow, duty, pulseOn, stateLRP, stateNNP])
+
+  useEffect(() => {
+    startTransition(() => {
+      const inputAverage = tf.tensor([[parseFloat(T1A), parseFloat(T2A), parseFloat(T3A), parseFloat(T4A), parseFloat(ECA)]])
+
+      const inputSignals = tf.tensor(
+        [
+          [parseFloat(T11), parseFloat(T21), parseFloat(T31), parseFloat(T41), parseFloat(EC1)],
+          [parseFloat(T12), parseFloat(T22), parseFloat(T32), parseFloat(T42), parseFloat(EC2)],
+          [parseFloat(T13), parseFloat(T23), parseFloat(T33), parseFloat(T43), parseFloat(EC3)],
+          [parseFloat(T14), parseFloat(T24), parseFloat(T34), parseFloat(T44), parseFloat(EC4)],
+          [parseFloat(T15), parseFloat(T25), parseFloat(T35), parseFloat(T45), parseFloat(EC5)],
+          [parseFloat(T16), parseFloat(T26), parseFloat(T36), parseFloat(T46), parseFloat(EC6)],
+          [parseFloat(T17), parseFloat(T27), parseFloat(T37), parseFloat(T47), parseFloat(EC7)],
+          [parseFloat(T18), parseFloat(T28), parseFloat(T38), parseFloat(T48), parseFloat(EC8)],
+          [parseFloat(T19), parseFloat(T29), parseFloat(T39), parseFloat(T49), parseFloat(EC9)],
+          [parseFloat(T110), parseFloat(T210), parseFloat(T310), parseFloat(T410), parseFloat(EC10)],
+          [parseFloat(T111), parseFloat(T211), parseFloat(T311), parseFloat(T411), parseFloat(EC11)],
+          [parseFloat(T112), parseFloat(T212), parseFloat(T312), parseFloat(T412), parseFloat(EC12)],
+          [parseFloat(T113), parseFloat(T213), parseFloat(T313), parseFloat(T413), parseFloat(EC13)],
+        ]).reshape([1, 13, 5, 1]);
+
+      if (modelStatus < 5) {
+        setModelStatus(parseFloat(modelStatus) + 1);
+      };
+
+      if (stateLRS == 1) {
+        tf.ready().then(() => {
+          LRSmodel
+            .then((res) => {
+              const prediction = res.predict(inputAverage);
+              setLRSDiameter(prediction.arraySync()[0][0])
+              setLRSDepth(prediction.arraySync()[0][1])
+              setLRSHillDiameter(prediction.arraySync()[0][2])
+              setLRSHillHeight(prediction.arraySync()[0][3])
+            })
+        })
+      };
+
+      if (stateNNS == 1) {
+        tf.ready().then(() => {
+          NNSmodel
+            .then((res) => {
+              const prediction = res.predict(inputAverage);
+              setNNSDiameter(prediction.arraySync()[0][0])
+              setNNSDepth(prediction.arraySync()[0][1])
+              setNNSHillDiameter(prediction.arraySync()[0][2])
+              setNNSHillHeight(prediction.arraySync()[0][3])
+            })
+        })
+      };
+
+      if (stateCNS == 1) {
+        tf.ready().then(() => {
+          // console.log(inputSignals.shape);
+          CNSmodel
+            .then((res) => {
+              try {
+                const prediction = res.predict(inputSignals)
+                // console.log(prediction.arraySync()[0])
+                setCNSDiameter(prediction.arraySync()[0][0])
+                setCNSDepth(prediction.arraySync()[0][1])
+                setCNSHillDiameter(prediction.arraySync()[0][2])
+                setCNSHillHeight(prediction.arraySync()[0][3])
+                // res.summary()
+              } catch (err) {
+                console.log(err);
+              }
+            })
+        })
+      };
+    })
+
+  }, [T1A, T2A, T3A, T4A, ECA, stateNNS, stateLRS, stateCNS])
+
+
+
+  useEffect(() => {
+    startTransition(() => {
+      const inputParameters = tf.tensor([[parseFloat(voltage), parseFloat(flow / 100), parseFloat(duty), parseFloat(pulseOn)]]);
+
+      const inputAverage = tf.tensor([[parseFloat(T1A), parseFloat(T2A), parseFloat(T3A), parseFloat(T4A), parseFloat(ECA)]]);
+
+      const inputCombine = tf.concat([inputParameters, inputAverage], 1);
+
+
+      const inputSignals = tf.tensor(
+        [
+          [parseFloat(T11), parseFloat(T21), parseFloat(T31), parseFloat(T41), parseFloat(EC1)],
+          [parseFloat(T12), parseFloat(T22), parseFloat(T32), parseFloat(T42), parseFloat(EC2)],
+          [parseFloat(T13), parseFloat(T23), parseFloat(T33), parseFloat(T43), parseFloat(EC3)],
+          [parseFloat(T14), parseFloat(T24), parseFloat(T34), parseFloat(T44), parseFloat(EC4)],
+          [parseFloat(T15), parseFloat(T25), parseFloat(T35), parseFloat(T45), parseFloat(EC5)],
+          [parseFloat(T16), parseFloat(T26), parseFloat(T36), parseFloat(T46), parseFloat(EC6)],
+          [parseFloat(T17), parseFloat(T27), parseFloat(T37), parseFloat(T47), parseFloat(EC7)],
+          [parseFloat(T18), parseFloat(T28), parseFloat(T38), parseFloat(T48), parseFloat(EC8)],
+          [parseFloat(T19), parseFloat(T29), parseFloat(T39), parseFloat(T49), parseFloat(EC9)],
+          [parseFloat(T110), parseFloat(T210), parseFloat(T310), parseFloat(T410), parseFloat(EC10)],
+          [parseFloat(T111), parseFloat(T211), parseFloat(T311), parseFloat(T411), parseFloat(EC11)],
+          [parseFloat(T112), parseFloat(T212), parseFloat(T312), parseFloat(T412), parseFloat(EC12)],
+          [parseFloat(T113), parseFloat(T213), parseFloat(T313), parseFloat(T413), parseFloat(EC13)],
+        ]).reshape([1, 13, 5, 1]);
+
+      if (modelStatus < 5) {
+        setModelStatus(parseFloat(modelStatus) + 1);
+      };
+      if (stateLRC == 1) {
+        tf.ready().then(() => {
+          LRCmodel
+            .then((res) => {
+              const prediction = res.predict(inputCombine);
+              setLRCDiameter(prediction.arraySync()[0][0])
+              setLRCDepth(prediction.arraySync()[0][1])
+              setLRCHillDiameter(prediction.arraySync()[0][2])
+              setLRCHillHeight(prediction.arraySync()[0][3])
+            })
+        });
       }
 
-      if (stateNNP == 1) {
-        NNPmodel
-          .then(function (res) {
-            const prediction = res.predict(inputParameters);
-            setNNPDiameter(prediction.arraySync()[0][0])
-            setNNPDepth(prediction.arraySync()[0][1])
-            setNNPHillDiameter(prediction.arraySync()[0][2])
-            setNNPHillHeight(prediction.arraySync()[0][3])
-          }
-          )
+      if (stateNNC == 1) {
+        tf.ready().then(() => {
+          NNCmodel
+            .then((res) => {
+              const prediction = res.predict(inputCombine);
+              setNNCDiameter(prediction.arraySync()[0][0])
+              setNNCDepth(prediction.arraySync()[0][1])
+              setNNCHillDiameter(prediction.arraySync()[0][2])
+              setNNCHillHeight(prediction.arraySync()[0][3])
+            })
+        })
+      };
+
+      if (stateCNC == 1) {
+        tf.ready().then(() => {
+          CNCmodel
+            .then((res) => {
+              try {
+                // res.summary()
+                const prediction = res.predict([inputSignals, inputParameters])
+                // console.log(prediction.arraySync()[0])
+                setCNCDiameter(prediction.arraySync()[0][0])
+                setCNCDepth(prediction.arraySync()[0][1])
+                setCNCHillDiameter(prediction.arraySync()[0][2])
+                setCNCHillHeight(prediction.arraySync()[0][3])
+              } catch (err) {
+                console.log(err);
+              }
+            })
+        })
       }
     })
-  }, [voltage, flow, duty, pulseOn,stateLRP,stateNNP])
-
-
-  useEffect(() => {
-
-    const inputAverage = tf.tensor([[parseFloat(T1A), parseFloat(T2A), parseFloat(T3A), parseFloat(T4A), parseFloat(ECA)]])
-
-    const inputSignals = tf.tensor(
-      [
-        [parseFloat(T11), parseFloat(T21), parseFloat(T31), parseFloat(T41), parseFloat(EC1)],
-        [parseFloat(T12), parseFloat(T22), parseFloat(T32), parseFloat(T42), parseFloat(EC2)],
-        [parseFloat(T13), parseFloat(T23), parseFloat(T33), parseFloat(T43), parseFloat(EC3)],
-        [parseFloat(T14), parseFloat(T24), parseFloat(T34), parseFloat(T44), parseFloat(EC4)],
-        [parseFloat(T15), parseFloat(T25), parseFloat(T35), parseFloat(T45), parseFloat(EC5)],
-        [parseFloat(T16), parseFloat(T26), parseFloat(T36), parseFloat(T46), parseFloat(EC6)],
-        [parseFloat(T17), parseFloat(T27), parseFloat(T37), parseFloat(T47), parseFloat(EC7)],
-        [parseFloat(T18), parseFloat(T28), parseFloat(T38), parseFloat(T48), parseFloat(EC8)],
-        [parseFloat(T19), parseFloat(T29), parseFloat(T39), parseFloat(T49), parseFloat(EC9)],
-        [parseFloat(T110), parseFloat(T210), parseFloat(T310), parseFloat(T410), parseFloat(EC10)],
-        [parseFloat(T111), parseFloat(T211), parseFloat(T311), parseFloat(T411), parseFloat(EC11)],
-        [parseFloat(T112), parseFloat(T212), parseFloat(T312), parseFloat(T412), parseFloat(EC12)],
-        [parseFloat(T113), parseFloat(T213), parseFloat(T313), parseFloat(T413), parseFloat(EC13)],
-      ]).reshape([1, 13, 5, 1]);
-
-    if (modelStatus < 5) {
-      setModelStatus(parseFloat(modelStatus) + 1);
-    };
-
-    if (stateLRS == 1) {
-      tf.ready().then(() => {
-        LRSmodel
-          .then(function (res) {
-            const prediction = res.predict(inputAverage);
-            setLRSDiameter(prediction.arraySync()[0][0])
-            setLRSDepth(prediction.arraySync()[0][1])
-            setLRSHillDiameter(prediction.arraySync()[0][2])
-            setLRSHillHeight(prediction.arraySync()[0][3])
-          })
-      })
-    };
-
-    if (stateNNS == 1) {
-      tf.ready().then(() => {
-        NNSmodel
-          .then(function (res) {
-            const prediction = res.predict(inputAverage);
-            setNNSDiameter(prediction.arraySync()[0][0])
-            setNNSDepth(prediction.arraySync()[0][1])
-            setNNSHillDiameter(prediction.arraySync()[0][2])
-            setNNSHillHeight(prediction.arraySync()[0][3])
-          })
-      })
-    };
-
-    if (stateCNS == 1) {
-      tf.ready().then(() => {
-        // console.log(inputSignals.shape);
-        CNSmodel
-          .then(function (res) {
-            try {
-              const prediction = res.predict(inputSignals)
-              // console.log(prediction.arraySync()[0])
-              setCNSDiameter(prediction.arraySync()[0][0])
-              setCNSDepth(prediction.arraySync()[0][1])
-              setCNSHillDiameter(prediction.arraySync()[0][2])
-              setCNSHillHeight(prediction.arraySync()[0][3])
-              // res.summary()
-            } catch (err) {
-              console.log(err);
-            }
-          })
-      })
-    };
-
-  }, [T1A, T2A, T3A, T4A, ECA,stateNNS,stateLRS,stateCNS])
-
-
-
-  useEffect(() => {
-    const inputParameters = tf.tensor([[parseFloat(voltage), parseFloat(flow / 100), parseFloat(duty), parseFloat(pulseOn)]]);
-
-    const inputAverage = tf.tensor([[parseFloat(T1A), parseFloat(T2A), parseFloat(T3A), parseFloat(T4A), parseFloat(ECA)]]);
-
-    const inputCombine = tf.concat([inputParameters, inputAverage], 1);
-
-
-    const inputSignals = tf.tensor(
-      [
-        [parseFloat(T11), parseFloat(T21), parseFloat(T31), parseFloat(T41), parseFloat(EC1)],
-        [parseFloat(T12), parseFloat(T22), parseFloat(T32), parseFloat(T42), parseFloat(EC2)],
-        [parseFloat(T13), parseFloat(T23), parseFloat(T33), parseFloat(T43), parseFloat(EC3)],
-        [parseFloat(T14), parseFloat(T24), parseFloat(T34), parseFloat(T44), parseFloat(EC4)],
-        [parseFloat(T15), parseFloat(T25), parseFloat(T35), parseFloat(T45), parseFloat(EC5)],
-        [parseFloat(T16), parseFloat(T26), parseFloat(T36), parseFloat(T46), parseFloat(EC6)],
-        [parseFloat(T17), parseFloat(T27), parseFloat(T37), parseFloat(T47), parseFloat(EC7)],
-        [parseFloat(T18), parseFloat(T28), parseFloat(T38), parseFloat(T48), parseFloat(EC8)],
-        [parseFloat(T19), parseFloat(T29), parseFloat(T39), parseFloat(T49), parseFloat(EC9)],
-        [parseFloat(T110), parseFloat(T210), parseFloat(T310), parseFloat(T410), parseFloat(EC10)],
-        [parseFloat(T111), parseFloat(T211), parseFloat(T311), parseFloat(T411), parseFloat(EC11)],
-        [parseFloat(T112), parseFloat(T212), parseFloat(T312), parseFloat(T412), parseFloat(EC12)],
-        [parseFloat(T113), parseFloat(T213), parseFloat(T313), parseFloat(T413), parseFloat(EC13)],
-      ]).reshape([1, 13, 5, 1]);
-
-    if (modelStatus < 5) {
-      setModelStatus(parseFloat(modelStatus) + 1);
-    };
-    if (stateLRC == 1) {
-      tf.ready().then(() => {
-        LRCmodel
-          .then(function (res) {
-            const prediction = res.predict(inputCombine);
-            setLRCDiameter(prediction.arraySync()[0][0])
-            setLRCDepth(prediction.arraySync()[0][1])
-            setLRCHillDiameter(prediction.arraySync()[0][2])
-            setLRCHillHeight(prediction.arraySync()[0][3])
-          })
-      });
-    }
-
-    if (stateNNC == 1) {
-      tf.ready().then(() => {
-        NNCmodel
-          .then(function (res) {
-            const prediction = res.predict(inputCombine);
-            setNNCDiameter(prediction.arraySync()[0][0])
-            setNNCDepth(prediction.arraySync()[0][1])
-            setNNCHillDiameter(prediction.arraySync()[0][2])
-            setNNCHillHeight(prediction.arraySync()[0][3])
-          })
-      })
-    };
-
-    if (stateCNC == 1) {
-      tf.ready().then(() => {
-        CNCmodel
-          .then(function (res) {
-            try {
-              // res.summary()
-              const prediction = res.predict([inputSignals, inputParameters])
-              // console.log(prediction.arraySync()[0])
-              setCNCDiameter(prediction.arraySync()[0][0])
-              setCNCDepth(prediction.arraySync()[0][1])
-              setCNCHillDiameter(prediction.arraySync()[0][2])
-              setCNCHillHeight(prediction.arraySync()[0][3])
-            } catch (err) {
-              console.log(err);
-            }
-          })
-      })
-    }
-  }, [voltage, flow, duty, pulseOn, T1A, T2A, T3A, T4A, ECA,stateCNC,stateLRC,stateNNC])
-
+  }, [voltage, flow, duty, pulseOn, T1A, T2A, T3A, T4A, ECA, stateCNC, stateLRC, stateNNC])
 
 
   // return (

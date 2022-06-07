@@ -27,7 +27,7 @@
     width: 55px;
     font-weight: 600;
     font-size: 18px;
-    top: -40px;
+    top: -50px;
     transform: translate(-50%);
     transform-origin: bottom;
     transition: transform 0.3s ease-in-out;
