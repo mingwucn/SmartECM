@@ -40,37 +40,6 @@
     z-index: 2;
 }
 
-.sliderVContainer .sliderValue span::after {
-    pointer-events: none;
-    position: absolute;
-    content: "";
-    height: 46px;
-    width: 46px;
-    background-color: #4b4b4b;
-    transform: translate(-50%) rotate(45deg);
-    z-index: -1;
-    border: 3px solid #929292;
-    left: 50%;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-    /* border-bottom-right-radius: 50%; */
-}
-
-.sliderVContainer .left {
-    position: absolute;
-    top: 8%;
-    left: -13%;
-    transform: rotate(90deg);
-}
-
-.sliderVContainer .right {
-    position: absolute;
-    right: -13%;
-    top: 8%;
-    transform: rotate(90deg);
-}
-
 .sliderVContainer .field {
     position: relative;
     margin-right: auto;
@@ -91,7 +60,7 @@
     border-radius: 1px;
     outline: none;
     border: none;
-    accent-color: #5f43f8;
+    accent-color: #140c3d69;
     width: 100%;
     top: 30%;
     opacity: 0.2;
