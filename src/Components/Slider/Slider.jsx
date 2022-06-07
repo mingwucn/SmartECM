@@ -1,4 +1,4 @@
-import React, { useEffect, useTransition } from 'react';
+import React, { useEffect, useTransition, useState } from 'react';
 import './Slider.css';
 
 const Slider = (props) => {
