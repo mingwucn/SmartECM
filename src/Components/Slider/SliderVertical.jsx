@@ -31,10 +31,10 @@ const Slider = (props) => {
                 </div>
                 <input
                     className='sliderInput'
-                    style={{
-                        opacity:`${show*50+10}`+'%'
-                    }}
-                    type="range" min={props.minValue} max={props.maxValue} step={0.01}
+                    // style={{
+                    //     opacity:`${show*50+50}`+'%'
+                    // }}
+                    type="range" min={props.minValue} max={props.maxValue} step={0.1}
                     value={props.value}
                     onChange={(e) => props.func(e.target.value)} />
             </div>

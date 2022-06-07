@@ -79,7 +79,7 @@ export default function LinePlot(props) {
                 min: 1,
                 max: 13,
                 ticks: {
-                    precision: 1,
+                    stepSize:1
                 }
             },
             y: {
@@ -90,7 +90,9 @@ export default function LinePlot(props) {
                     stepSize: props.step ? props.step : 0.2
                 }
             },
-        }
+        },
+
+        maintainAspectRatio: false
     }
 
     return (

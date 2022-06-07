@@ -59,9 +59,14 @@
 
 .tabs-contents {
     position: relative;
+    width: 100%;
+    /* height: 500px; */
 
 }
 
+/* .tabs-contents .content-active {
+    background-color: aliceblue;
+} */
 .tabs-contents .content-silent {
     display: none;
 }
@@ -71,9 +76,10 @@
     position: relative;
     /* overflow-y: hidden; */
     display: flex;
-    width: 100%;
-    margin-left: -66%;
+    width: 200px;
+    margin-left:-73px;
     height: 180px;
+    /* background-color: aliceblue; */
 }
 
 .sliderV {
@@ -89,10 +95,10 @@
 .sliderPlot {
     position: absolute;
     pointer-events: none;
-    width: 350px;
+    width: 100%;
     /* background-color: #0080ff; */
     top: 40px;
-    left:-75px;
+    left:0px;
 }
 
 /* .container-sliderV :nth-child(1) {

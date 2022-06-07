@@ -31,7 +31,7 @@ const Slider = (props) => {
                 </div>
                 <input
                     className='sliderInput'
-                    type="range" min={props.minValue} max={props.maxValue} step="0.1"
+                    type="range" min={props.minValue} max={props.maxValue} step="0.5"
                     value={props.value}
                     onChange={(e) => props.func(e.target.value)} />
             </div>

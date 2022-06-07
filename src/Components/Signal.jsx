@@ -288,7 +288,7 @@ const Signal = () => {
     const toggleTab = (tabNum) => {
         setToggleState(tabNum);
     }
-    const spaceGap = 300 / 12;
+    const spaceGap = 280 / 12;
     return (
         <div className='container-Signals'>
             <div className='bloc-tabs'>
@@ -986,7 +986,7 @@ const Signal = () => {
                                 ]}
                             maxValue={6}
                             minValue={1}
-                            step={0.01}
+                            step={0.1}
                         />
                     </div>
                 </div>

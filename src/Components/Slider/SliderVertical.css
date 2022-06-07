@@ -89,10 +89,11 @@
     left: 0%;
     height: 7px;
     border-radius: 1px;
-    outline: none;
+    outline: none8c8ff7;
     border: none;
-    accent-color: #757575;
+    accent-color: #;
     width: 100%;
     top: 30%;
-    transition: opacity 1s;  
+    opacity: 0.2;
+    /* transition: opacity 1s;   */
 }
