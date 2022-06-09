@@ -1,10 +1,21 @@
-import React, { useState, useEffect, useLayoutEffect, useContext, useMemo, useTransition } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useContext, useMemo, useTransition, Suspense } from 'react';
 import * as tf from '@tensorflow/tfjs';
-import { DataContext, ResContext } from '../Predictor';
+import { DataContext, ParameterContext, ResContext, StateContext } from '../Predictor';
 
 const TFModel = () => {
   const {
-    voltage, flow, duty, pulseOn, T1A, T2A, T3A, T4A, ECA,
+    stateLRP,
+    stateLRS,
+    stateLRC,
+    stateNNP,
+    stateNNS,
+    stateNNC,
+    stateCNS,
+    stateCNC,
+  } = useContext(StateContext)
+
+  const {
+    T1A, T2A, T3A, T4A, ECA,
     T11,
     T12,
     T13,
@@ -70,15 +81,12 @@ const TFModel = () => {
     EC11,
     EC12,
     EC13,
-    stateLRP,
-    stateLRS,
-    stateLRC,
-    stateNNP,
-    stateNNS,
-    stateNNC,
-    stateCNS,
-    stateCNC,
+
   } = useContext(DataContext);
+
+  const {
+    voltage, flow, duty, pulseOn,
+  } = useContext(ParameterContext)
 
   const {
     LRPdiameter, setLRPDiameter,
@@ -153,6 +161,7 @@ const TFModel = () => {
   useLayoutEffect(() => {
     startTransition(() => {
       const mlModelLoader = (models) => {
+        loadJson(models.LRS)
         setLRSModel(loadModel(models.LRS))
         setLRPModel(loadModel(models.LRP))
         setLRCModel(loadModel(models.LRC))
@@ -177,7 +186,21 @@ const TFModel = () => {
         }
 
       async function loadJson(jsonString) {
-        fetch(jsonString)
+        fetch(jsonString,
+          {
+
+            headers: {
+              'Access-Control-Allow-Origin': "*/*",
+              'Content-Type': 'application/json',
+
+              'Accept': '*/*',
+              '*User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+
+            },
+            method: 'GET',
+            mode: 'no-cors',
+
+          })
           .then((response) => response.json())
           .then((messages) => { console.log(messages); });
       }
@@ -336,7 +359,6 @@ const TFModel = () => {
       const inputAverage = tf.tensor([[parseFloat(T1A), parseFloat(T2A), parseFloat(T3A), parseFloat(T4A), parseFloat(ECA)]]);
 
       const inputCombine = tf.concat([inputParameters, inputAverage], 1);
-
 
       const inputSignals = tf.tensor(
         [

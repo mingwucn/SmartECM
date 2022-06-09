@@ -6,7 +6,7 @@ import LR from './LR';
 import LinePlot from './Chart/LinePlot';
 import TFModels from './tf/TFModel';
 import Signal from './Signal';
-import { DataContext } from './Predictor';
+import { ParameterContext } from './Predictor';
 
 
 function ProcessingParameters() {
@@ -26,7 +26,7 @@ function ProcessingParameters() {
     flow, setFlow,
     duty, setDuty,
     pulseOn, setPulseOn
-  } = useContext(DataContext);
+  } = useContext(ParameterContext);
 
   // const toggleTab = (tabNum) => {
   //   setToggleState(tabNum);
