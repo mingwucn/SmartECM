@@ -211,20 +211,42 @@ export default function LinePlot() {
             colorschemes: {
                 scheme: 'tableau.Tableau20'
             },
-            tooltip: false
+            tooltip: false,
         },
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: 'Y coordinate (μm)',
+                    font: {
+                        size: 14,
+                        weight: "bold"
+                    }
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'X coordinate (mm)',
+                    font: {
+                        size: 14,
+                        weight: "bold"
+                    }
+                }
+            }
+        }
     }
 
 
     return (
-        <div className="LinePlot">
+        <div className="LinePlot" >
             <Scatter
                 data={data}
                 options={option}
                 height="200px"
                 width="200px"
             />
-        </div>
+        </div >
     );
 }

@@ -13,9 +13,6 @@ export const StateContext = createContext(null);
 
 export const ResContext = createContext(null);
 
-
-
-
 const ECMPredictor = () => {
     const [isPending, startTransition] = useTransition();
     const [toggleState, setToggleState] = useState(2)
