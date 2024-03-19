@@ -1,0 +1,41 @@
+.sliderVContainer {
+    position: absolute;
+    display: block;
+    height: 50px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    top: 125px;
+    left: 0px;
+    transform: rotate(270deg);
+}
+
+.sliderVContainer .field {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 80%;
+    /* background-color: #4b4b4b; */
+}
+
+.sliderVContainer .field .sliderInput {
+    position: absolute;
+    padding: 0 0 0 0;
+    left: 0%;
+    height: 7px;
+    border-radius: 1px;
+    outline: none;
+    border: none;
+    accent-color: #140c3d69;
+    width: 100%;
+    top: 30%;
+    opacity: 0.2;
+    /* transition: opacity 1s;   */
+}

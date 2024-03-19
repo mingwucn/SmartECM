@@ -1,0 +1,80 @@
+.container-tabs-activate{
+    display: block;
+}
+
+.container-tabs-silent {
+    display: none;
+}
+
+.container-processingParameters {
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 12px #ccc;
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    width: 350px;
+    /* max-width: 375px; */
+}
+
+.container-processingParameters .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    width: 100%;
+    top: 10px;
+}
+
+.container-processingParameters .btn button {
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin: 5px;
+    background-color: aqua;
+    align-items: center;
+}
+
+/* .container-processingParameters .form .inputs{
+    position: absolute;
+    top:-40px;
+    display:flex;
+    flex-direction: column;
+} */
+.container-processingParameters .form .formInput {
+    position: absolute;
+    right: 4%;
+    height: 28px;
+    width: 20%;
+    font-size: 1.2rem;
+    padding: 2px 4px;
+    margin: -10px;
+    border-radius: 8px;
+    border-color: #e8e8e8;
+}
+
+.container-processingParameters .form label {
+    position: relative;
+    float: left;
+    margin-left: 15px;
+    font-size: larger;
+    margin-bottom: 50px;
+    margin-top: -10px;
+}
+
+.results {
+    margin-left: -10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+    float: left;
+    width: fit-content;
+    line-height: 70%;
+}

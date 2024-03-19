@@ -1,0 +1,90 @@
+.sliderContainer {
+    position: relative;
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    top: 25px;
+}
+
+.sliderContainer .sliderValue {
+    pointer-events: none;
+    display: block;
+    margin-bottom: -10px;
+    position: absolute;
+    background-color: #f50909;
+    width: 100%;
+}
+
+.sliderContainer .sliderValue span {
+    pointer-events: none;
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    font-weight: 600;
+    font-size: 18px;
+    top: -50px;
+    transform: translate(-50%);
+    transform-origin: bottom;
+    transition: transform 0.3s ease-in-out;
+    line-height: 50px;
+    z-index: 2;
+}
+
+.sliderContainer .sliderValue span::after {
+    pointer-events: none;
+    position: absolute;
+    content: "";
+    height: 46px;
+    width: 46px;
+    background-color: #4b4b4b;
+    transform: translate(-50%) rotate(45deg);
+    z-index: -1;
+    border: 3px solid #929292;
+    left: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    /* border-bottom-right-radius: 50%; */
+}
+
+.sliderContainer .left {
+    position: absolute;
+    top: 8%;
+    left: -13%;
+}
+
+.sliderContainer .right {
+    position: absolute;
+    right: -13%;
+    top: 8%;
+}
+
+.sliderContainer .field {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 80%;
+    /* background-color: #4b4b4b; */
+}
+
+.sliderContainer .field .sliderInput {
+    position: absolute;
+    padding: 0 0 0 0;
+    left: 0%;
+    height: 7px;
+    border-radius: 1px;
+    outline: none;
+    border: none;
+    accent-color: #757575;
+    width: 100%;
+    top: 30%
+}
