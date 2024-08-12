@@ -1,75 +1,58 @@
-# Getting Started with Create React App
+# README for ECM Prediction and Interpretability Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project contains the implementation of machine learning models for real-time prediction and optimization in Electrochemical Machining (ECM). The project emphasizes the interpretability of these models through Explainable AI (XAI) techniques, including SHapley Additive exPlanations (SHAP), Gradient-weighted Class Activation Mapping (Grad-CAM), and a custom linear regression explainer. The codebase is organized to facilitate the training, evaluation, and interpretation of models used to predict cavity profiles based on processing parameters and in-process data.
 
-In the project directory, you can run:
+## Environment Setup
 
-### `npm start`
+To run the code in this project, the following environment and dependencies are required:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Operating System:** Linux/Windows
+- **CUDA Version:** 9.0
+- **TensorFlow:** 2.0
+- **NumPy:** Latest stable version
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation Guide
 
-### `npm test`
+1. **Install CUDA 9.0:**
+   - Follow the official CUDA installation guide for your operating system: https://developer.nvidia.com/cuda-90-download-archive
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install TensorFlow 2.0:**
+   - With GPU support:
+     ```bash
+     pip install tensorflow-gpu==2.0.0
+     ```
+   - Without GPU support:
+     ```bash
+     pip install tensorflow==2.0.0
+     ```
 
-### `npm run build`
+3. **Install NumPy:**
+   ```bash
+   pip install numpy
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Verifying the Environment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+import tensorflow as tf
+import numpy as np
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+print("TensorFlow version:", tf.__version__)
+print("NumPy version:", np.__version__)
+print("Is GPU available:", tf.test.is_gpu_available())
+```
+## Project Structure
+The project is organized into the following directories:
 
-### `npm run eject`
+/algorithms: Contains the implementations of the interpretability algorithms.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+/grad_cam.py: A self-implemented version of the Grad-CAM algorithm for visualizing the focus of convolutional neural networks.
+/shap_explainer.py: SHAP implementation for providing global explanations of machine learning models.
+/linear_regression_explainer.py: Custom explainer for interpreting linear regression models.
+/models: Includes the ML models used in the study.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# ECM-predictor
-
-### Deploy to github pages
-
-npm run deploy
+/logistic_regression.py: Implementation of the logistic regression model.
+/neural_network.py: Implementation of the neural network model.
+/cnn.py: Implementation of the convolutional neural network (CNN) model.
+/data: Placeholder for datasets. 
