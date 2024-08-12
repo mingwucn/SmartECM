@@ -56,3 +56,6 @@ The project is organized into the following directories:
 /neural_network.py: Implementation of the neural network model.
 /cnn.py: Implementation of the convolutional neural network (CNN) model.
 /data: Placeholder for datasets. 
+
+License
+This project is licensed under the MIT License. See the LICENSE file for more details.
